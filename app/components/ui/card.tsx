@@ -1,0 +1,21 @@
+import { ReactNode } from "react";
+import { cn } from "@/src/lib/utils";
+
+export default function Card({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn(
+        "rounded-2xl border border-zinc-800 bg-zinc-900 p-6 shadow",
+        className
+      )}
+    >
+      {children}
+    </div>
+  );
+}
