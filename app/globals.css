@@ -1,154 +1,358 @@
+
 @import "./fonts.css";
 @import "tailwindcss";
 
 /* ===========================
-   Root Theme Variables
+   CSS Variables - Light Theme
 =========================== */
 
 :root {
-  --radius: 18px;
+  /* Primary Colors - Teal */
+  --primary: #0d9488;
+  --primary-light: #14b8a6;
+  --primary-lighter: #2dd4bf;
+  --primary-dark: #0f766e;
 
-  --background: #f6f8fb;
-  --foreground: #111827;
+  /* Accent Colors - Persian Gold */
+  --accent: #f59e0b;
+  --accent-light: #fbbf24;
+  --accent-dark: #d97706;
 
-  --card: rgba(255,255,255,.65);
-  --card-border: rgba(255,255,255,.45);
+  /* Backgrounds */
+  --bg-primary: #fafbfc;
+  --bg-secondary: #f3f4f6;
+  --bg-tertiary: #e5e7eb;
 
-  --primary: #2563eb;
-  --secondary: #06b6d4;
-  --success: #10b981;
-  --warning: #f59e0b;
-  --danger: #ef4444;
+  /* Text */
+  --text-primary: #0f1419;
+  --text-secondary: #374151;
+  --text-muted: #6b7280;
 
-  --muted: #64748b;
+  /* Borders */
+  --border-color: #e5e7eb;
 
-  --shadow:
-      0 10px 40px rgba(0,0,0,.08);
-
-  --glass-blur: blur(18px);
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(15, 20, 25, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(15, 20, 25, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(15, 20, 25, 0.15);
+  --shadow-xl: 0 20px 25px -5px rgba(15, 20, 25, 0.2);
+  --shadow-2xl: 0 25px 50px -12px rgba(15, 20, 25, 0.25);
 }
 
-.dark{
+/* ===========================
+   CSS Variables - Dark Theme
+=========================== */
 
-  --background:#050816;
-  --foreground:#f8fafc;
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Primary Colors - Teal (brighter for dark) */
+    --primary: #14b8a6;
+    --primary-light: #2dd4bf;
+    --primary-lighter: #5eead4;
+    --primary-dark: #0d9488;
 
-  --card:rgba(18,25,40,.55);
-  --card-border:rgba(255,255,255,.08);
+    /* Accent Colors - Gold */
+    --accent: #fbbf24;
+    --accent-light: #fcd34d;
+    --accent-dark: #f59e0b;
 
-  --primary:#3b82f6;
-  --secondary:#22d3ee;
+    /* Backgrounds */
+    --bg-primary: #0f1419;
+    --bg-secondary: #1a1f26;
+    --bg-tertiary: #252d37;
 
-  --shadow:
-      0 20px 60px rgba(0,0,0,.45);
+    /* Text */
+    --text-primary: #f0f9ff;
+    --text-secondary: #e0e7ff;
+    --text-muted: #a8b3c1;
 
-}
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+    /* Borders */
+    --border-color: #374151;
 
-html{
-
-scroll-behavior:smooth;
-
-}
-
-body{
-
-font-family:Vazirmatn,sans-serif;
-
-background:var(--background);
-
-color:var(--foreground);
-
-min-height:100vh;
-
-transition:.3s;
-
-overflow-x:hidden;
-
-}
-body::before{
-
-content:"";
-
-position:fixed;
-
-inset:0;
-
-background:
-
-radial-gradient(circle at top left,#2563eb22,transparent 35%),
-
-radial-gradient(circle at bottom right,#06b6d422,transparent 35%),
-
-linear-gradient(135deg,#050816,#0b1220,#111827);
-
-z-index:-2;
-
-}
-body::after{
-
-content:"";
-
-position:fixed;
-
-inset:0;
-
-backdrop-filter:blur(120px);
-
-z-index:-1;
-
-}
-::selection{
-
-background:#2563eb;
-
-color:white;
-
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+    --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  }
 }
 
-::-webkit-scrollbar{
-
-width:10px;
-
+html.dark {
+  color-scheme: dark;
 }
 
-::-webkit-scrollbar-thumb{
+/* ===========================
+   Reset
+=========================== */
 
-background:#2563eb;
-
-border-radius:20px;
-
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-::-webkit-scrollbar-track{
+/* ===========================
+   HTML & Body
+=========================== */
 
-background:transparent;
-
-}
-a{
-
-text-decoration:none;
-
-color:inherit;
-
+html {
+  scroll-behavior: smooth;
 }
 
-button{
-
-font-family:inherit;
-
-cursor:pointer;
-
+body {
+  font-family: "Vazirmatn", sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
 }
 
-img{
+/* ===========================
+   Gradient Backgrounds
+=========================== */
 
-max-width:100%;
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, 
+    transparent 0%,
+    rgba(20, 184, 166, 0.05) 50%,
+    transparent 100%),
+    radial-gradient(circle at top right, rgba(245, 158, 11, 0.03), transparent 50%);
+  pointer-events: none;
+  z-index: -2;
+}
 
-display:block;
+html.dark body::before {
+  background: linear-gradient(135deg, 
+    transparent 0%,
+    rgba(45, 212, 191, 0.08) 50%,
+    transparent 100%),
+    radial-gradient(circle at top right, rgba(251, 191, 36, 0.05), transparent 50%);
+}
 
+/* ===========================
+   Selection
+=========================== */
+
+::selection {
+  background-color: var(--primary);
+  color: white;
+}
+
+::-moz-selection {
+  background-color: var(--primary);
+  color: white;
+}
+
+/* ===========================
+   Scrollbar
+=========================== */
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--primary) 0%, var(--primary-light) 100%);
+  border-radius: 20px;
+  border: 3px solid var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--primary-light) 0%, var(--primary-lighter) 100%);
+}
+
+/* ===========================
+   Headings
+=========================== */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+h1 {
+  font-size: 2.25rem;
+}
+
+h2 {
+  font-size: 1.875rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+/* ===========================
+   Links
+=========================== */
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--primary);
+}
+
+/* ===========================
+   Buttons
+=========================== */
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ===========================
+   Images
+=========================== */
+
+img {
+  max-width: 100%;
+  display: block;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+img:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ===========================
+   Utility Classes
+=========================== */
+
+.glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(229, 231, 235, 0.8);
+  box-shadow: var(--shadow-md);
+}
+
+html.dark .glass {
+  background: rgba(26, 31, 38, 0.8);
+  border: 1px solid rgba(71, 85, 105, 0.3);
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+html.dark .gradient-text {
+  background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-lighter) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gradient Button */
+.gradient-btn {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  color: white;
+}
+
+.gradient-btn:hover {
+  background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-lighter) 100%);
+  box-shadow: 0 10px 25px -5px rgba(13, 148, 136, 0.4);
+}
+
+html.dark .gradient-btn:hover {
+  box-shadow: 0 10px 25px -5px rgba(45, 212, 191, 0.3);
+}
+
+/* Card */
+.card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 24px;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+/* ===========================
+   Animations
+=========================== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out;
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.875rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
 }
